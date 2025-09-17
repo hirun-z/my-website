@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Personal Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: url("background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            overflow-x: hidden;
+        }
+
+        /* Header Navigation */
+        .header {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1200px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu li a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+        }
+
+        .nav-menu li a:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-menu li a.active {
+            color: #fff;
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Section Container */
+        .section {
+            min-height: 100vh;
+            padding: 120px 20px 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Glass Panel Base */
+        .glass-panel {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .glass-panel:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+        }
+
+        .hero-avatar {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 2rem;
+            font-size: 4rem;
+            color: #fff;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            color: #fff;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .about-text p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            text-align: center;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .skill-icon {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+        }
+
+        .skill-name {
+            color: #fff;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: #fff;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .project-card p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: rgba(255, 255, 255, 1);
+            color: #333;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: #fff;
+            color: #fff;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h2 {
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item ion-icon {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-right: 1rem;
+        }
+
+        .contact-item span {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .contact-form {
+            background-color: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.5);
+            background-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #fff;
+            margin-bottom: 3rem;
+            font-weight: 600;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .header {
+                width: 95%;
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-menu {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 100px 15px 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glass-panel {
+                padding: 1.5rem;
+            }
+
+            .hero-avatar {
+                width: 120px;
+                height: 120px;
+                font-size: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="logo">Hirun Sasmitha</div>
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="section">
+        <div class="container">
+            <div class="glass-panel hero">
+                <div class="hero-avatar">
+                    <ion-icon name="person-outline"></ion-icon>
+                </div>
+                <h1>Hirun Sasmitha</h1>
+                <p class="tagline">Full-Stack Developer & UI/UX Designer<br>Creating beautiful digital experiences with modern technology</p>
+                
+                <div class="social-links">
+                    <a href="https://github.com/" class="social-link" title="GitHub">
+                        <ion-icon name="logo-github"></ion-icon>
+                    </a>
+                    <a href="https://linkedin.com/in/hirunz" class="social-link" title="LinkedIn">
+                        <ion-icon name="logo-linkedin"></ion-icon>
+                    </a>
+                    <a href="https://x.com/Hirunzs" class="social-link" title="Twitter">
+                        <ion-icon name="logo-twitter"></ion-icon>
+                    </a>
+                    <a href="hirunsasmithapvt@gmail.com" class="social-link" title="Email">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </a>
+                    <a href="https://wa.me/+94775712399?text=Hey Hirunz, Please Help Me!😼💤" class="social-link" title="Whatsapp">
+                        <ion-icon name="logo-whatsapp"></ion-icon>
+                    </a>    
+                    <a href="https://www.instagram.com/hirun.z" class="social-link" title="Instagram">
+                        <ion-icon name="logo-instagram"></ion-icon>
+                    </a>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <a href="#projects" class="btn">View My Work</a>
+                    <a href="#contact" class="btn btn-outline" style="margin-left: 1rem;">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">About Me</h2>
+            <div class="glass-panel">
+                <div class="about-content">
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-javascript"></ion-icon></div>
+                            <div class="skill-name">JavaScript</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-react"></ion-icon></div>
+                            <div class="skill-name">React</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-nodejs"></ion-icon></div>
+                            <div class="skill-name">Node.js</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-python"></ion-icon></div>
+                            <div class="skill-name">Python</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-html5"></ion-icon></div>
+                            <div class="skill-name">HTML5</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><ion-icon name="logo-css3"></ion-icon></div>
+                            <div class="skill-name">CSS3</div>
+                        </div>
+                    </div>
+                    <div class="about-text">
+                        <h2>Hello! I'm a Developer</h2>
+                        <p>I'm a passionate full-stack developer with over 5 years of experience creating digital solutions. I specialize in modern web technologies and love building applications that make a difference.</p>
+                        <p>My journey in technology started with a curiosity about how things work, and has evolved into a career dedicated to crafting exceptional user experiences and robust backend systems.</p>
+                        <p>When I'm not coding, you'll find me exploring new technologies, contributing to open source projects, or sharing knowledge with the developer community.</p>
+                        <a href="#" class="btn">Download Resume</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title">My Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment processing, and admin dashboard.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Stripe API</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn">
+                            <ion-icon name="eye-outline"></ion-icon>
+                            Live Demo
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <ion-icon name="logo-github"></ion-icon>
+                            Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Task Management App</h3>
+                    <p>A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Vue.js</span>
+                        <span class="tech-tag">Firebase</span>
+                        <span class="tech-tag">Socket.io</span>
+                        <span class="tech-tag">TypeScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn">
+                            <ion-icon name="eye-outline"></ion-icon>
+                            Live Demo
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <ion-icon name="logo-github"></ion-icon>
+                            Code
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Weather Dashboard</h3>
+                    <p>A beautiful weather application with location-based forecasts, interactive maps, and detailed weather analytics using modern APIs.</p>
+                    <div class="project-tech">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Chart.js</span>
+                        <span class="tech-tag">OpenWeather API</span>
+                        <span class="tech-tag">CSS3</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn">
+                            <ion-icon name="eye-outline"></ion-icon>
+                            Live Demo
+                        </a>
+                        <a href="#" class="btn btn-outline">
+                            <ion-icon name="logo-github"></ion-icon>
+                            Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="glass-panel">
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h2>Let's Work Together</h2>
+                        <p>I'm always interested in new opportunities and exciting projects. Whether you have a project in mind or just want to chat about technology, feel free to reach out!</p>
+                        
+                        <div class="contact-item">
+                            <ion-icon name="mail-outline"></ion-icon>
+                            <span>hirunsasmithapvt@gmail.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <ion-icon name="call-outline"></ion-icon>
+                            <span>+94 77 571 2399</span>
+                        </div>
+                        <div class="contact-item">
+                            <ion-icon name="location-outline"></ion-icon>
+                            <span>Colombo, Sri Lanka</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" placeholder="Your Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="your.email@gmail.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" rows="5" placeholder="Your message here..."></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">
+                            <ion-icon name="send-outline"></ion-icon>
+                            Send Message
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Smooth navigation
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            const sections = document.querySelectorAll('.section');
+            
+            // Update active navigation on scroll
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Button ripple effects
+            const buttons = document.querySelectorAll('.btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    const ripple = document.createElement('span');
+                    ripple.style.cssText = `
+                        position: absolute;
+                        border-radius: 50%;
+                        background: rgba(255,255,255,0.3);
+                        pointer-events: none;
+                        animation: ripple 0.6s linear;
+                        width: 20px;
+                        height: 20px;
+                        left: ${e.offsetX - 10}px;
+                        top: ${e.offsetY - 10}px;
+                    `;
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(ripple);
+                    
+                    setTimeout(() => ripple.remove(), 600);
+                });
+            });
+
+            // Form submission
+            const contactForm = document.querySelector('.contact-form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    alert('Thank you for your message! I\'ll get back to you soon.');
+                });
+            }
+
+            // Parallax effect for glass panels
+            window.addEventListener('scroll', function() {
+                const scrolled = window.pageYOffset;
+                const parallax = document.querySelectorAll('.glass-panel');
+                
+                parallax.forEach((panel, index) => {
+                    const rate = scrolled * -0.01 * (index % 3 + 1);
+                    panel.style.transform = `translateY(${rate}px)`;
+                });
+            });
+        });
+
+        // Add ripple animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
